@@ -1,0 +1,59 @@
+<div id="adminrow">
+  <div id="home">
+    <app-adminhome></app-adminhome>
+  </div>
+
+  <div id="searchform" [formGroup]="searchForm" (ngSubmit)="search()" class="searchbox">
+    <label>
+      <input type="text" formControlName="search" (keyup)="search()"> <fa-icon [icon]="faSearch" class="icon" (click)="search()"></fa-icon>
+    </label>
+  </div>
+</div>
+<div class="clear"></div>
+<div *ngIf="errortext" class="error">{{errortext}}</div>
+
+
+<div *ngIf="showlist">
+  <div *ngFor="let project of projectList">
+    <fa-icon [icon]="faEdit" class="lineicon" (click)="edit(project.id)" title="edit"></fa-icon>
+    <fa-icon [icon]="faTrashAlt" class="lineicon" (click)="delete(project.id)" title="delete"></fa-icon>
+    <div (click)="edit(project.id)" class="field">{{project.name}}</div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div *ngIf="!showlist">
+  <div *ngIf="showedit" id="editform" [formGroup]="editForm">
+    <div class="formrow">
+      <div class="formcol">
+        <label>
+          Projectnaam
+          <input type="text" formControlName="name">
+        </label>
+      </div>
+
+      <div class="formcol">
+        <label>
+          Beschrijving
+          <input type="text" formControlName="description">
+        </label>
+      </div>
+    </div>
+
+    <div class="formrow">
+      <div class="formcol">
+        <label>
+          Projectkey
+          <input type="text" formControlName="key">
+        </label>
+      </div>
+    </div>
+
+    <div class="formrow">
+      <button (click)="update()" >Verwerken</button>
+      <button (click)="cancel()" >Cancel</button>
+    </div>
+
+  </div>
+</div>
+

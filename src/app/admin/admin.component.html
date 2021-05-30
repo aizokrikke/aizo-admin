@@ -1,0 +1,27 @@
+<div class="container">
+  <app-header></app-header>
+
+  <div id="tekstbody">
+    <div [ngSwitch]="action" >
+      <div *ngSwitchCase="'users'">
+        <app-useradmin></app-useradmin>
+      </div>
+      <div *ngSwitchCase="'projects'">
+        <app-projectadmin></app-projectadmin>
+      </div>
+      <div *ngSwitchDefault>
+        <div *ngFor="let module of available" class="button" (click)="handleClick(module)">
+          {{module}}
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+  <div class="closer"></div>
+</div>
+
+
+
